@@ -1,0 +1,21 @@
+body {
+  font-family: 'Inter';
+  color: white;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+nav {
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1024px) {
+  nav {
+    flex-wrap: nowrap;
+  }
+}
+
+

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Alpine Toolbox - Example - Responsive Navbar</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+
+    <!-- style -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/theme.css">
+
+    <!-- Required form plugin -->
+    <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet" />
+
+    <!-- Required font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <nav
+      class="bg-black flex  bg-black items-center justify-between xl:py-11 md:py-6 py-4 lg:px-20 px-4 w-full z-10 top-0"
+      x-data="{ isOpen: false }"
+      @keydown.escape="isOpen = false"
+      :class="{ 'shadow-lg bg-black' : isOpen , 'bg-black' : !isOpen}"
+    >
+    <!--Toggle button (hidden on large screens)-->
+    <button
+    @click="isOpen = !isOpen"
+    type="button"
+    class="block lg:hidden px-2 text-gray-500 hover:text-white focus:outline-none focus:text-white"
+    :class="{ 'transition transform-180': isOpen }"
+  >
+    <svg
+      class="h-6 w-6 fill-current"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        x-show="isOpen"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+      />
+      <path
+        x-show="!isOpen"
+        fill-rule="evenodd"
+        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+      />
+    </svg>
+    </button>
+
+      <!--Logo etc-->
+      <div class="flex sm:justify-start justify-center items-center flex-shrink-0">
+        <a
+          class="text-white no-underline hover:text-white hover:no-underline"
+          href="#"
+        >
+        <div class="md:flex hidden">
+          <img src="./img/Aubook.png" alt="Logo" class="mr-2">
+          <img src="./img/Aubook-1.png" alt="Logo">
+        </div>
+        <div class="md:hidden flex">
+          <img src="./img/Aubook (3).png" alt="Logo" class="mr-1">
+          <img src="./img/Aubook (4).png" alt="Logo">
+        </div>
+        </a>
+      </div>
+
+      <!--Search Input-->
+      <div class="flex items-center lg:order-last">
+        <div class="relative flex flex-wrap items-stretch lg:block hidden">
+          <span
+            class="
+              z-10
+              h-full
+              leading-snug
+              font-normal
+              absolute
+              text-center text-gray-100
+              absolute
+              bg-gray-800
+              rounded-lg
+              text-base
+              items-center
+              justify-center
+              w-8
+              pl-3
+              py-3
+            "
+          >
+          <i class="fas fa-search"></i>
+            
+          </span>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="
+              px-3
+              py-3
+              placeholder-gray-100
+              text-gray-100
+              relative
+              bg-gray-800
+              rounded-lg
+              text-base
+              border border-gray-800
+              outline-none
+              focus:outline-none 
+              w-full
+              pl-10
+            "
+          />
+        </div>
+        <img src="./img/user_lg.png" alt="User" class="sm:ml-6 sm:block hidden">
+        <img src="./img/user_sm.png" alt="User" class="sm:hidden block">
+      </div>
+
+      <!--Menu-->
+      <div
+        class="w-full lg:flex lg:items-center lg:w-auto xl:pl-0 pl-20" 
+        :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
+        @click.away="isOpen = false"
+        x-show.transition="true"
+      >
+        <ul
+          class="pt-6 lg:pt-0 list-reset lg:flex flex-1 items-center"
+        >
+          <li class="mr-10">
+            <a
+              class="inline-block py-2 text-white text-lg font-medium no-underline"
+              href="#"
+              @click="isOpen = false"
+              >Books
+            </a>
+          </li>
+          <li class="mr-10">
+            <a
+              class="inline-block text-white text-lg font-medium no-underline py-2"
+              href="#"
+              @click="isOpen = false"
+              >Authors
+            </a>
+          </li>
+          <li class="mr-10">
+            <a
+              class="inline-block text-white text-lg font-medium no-underline py-2"
+              href="#"
+              @click="isOpen = false"
+              >Blogs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!--Container for content-->
+    <div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18"></div>
+  </body>
+</html>
